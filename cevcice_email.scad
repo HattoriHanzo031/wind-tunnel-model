@@ -98,22 +98,26 @@ module leptirBezRupe(w, h) {
 
 midSensors = d/2;
 
+xMargina = (w-328)/2;
+yMargina = 3;
+
+middleSensorL = xMargina+32+1*66-1*4;
+middleSensorR = xMargina+32+3*66+1*4;
+    
 module ploca() {
-    translate([84.33,midSensors,0])
+    translate([middleSensorL-4-2*4,midSensors,0])
         rotate([0,90,0])leptir(34, 20);
     
-    translate([84.33+20,midSensors,0])
+    translate([middleSensorL+2*4,midSensors,0])
         rotate([0,90,0])leptir(34, 20);
     
-    translate([84.33+3*44+8,midSensors,0])
+    translate([middleSensorR-4-2*4,midSensors,0])
         rotate([0,90,0])leptir(34, 20);
     
-    translate([84.33+20+3*44+8,midSensors,0])
+    translate([middleSensorR+2*4,midSensors,0])
         rotate([0,90,0])leptir(34, 20);
     
     difference() {
-        xMargina = (w-328)/2;
-        yMargina = 3;
         topXAngle = -90;
         bottomXAngle = 90;
         topTrans = h;
@@ -443,8 +447,7 @@ module leptirNastavak() {
         }
     }
 }
-//translate([0,0,20])
-//leptirNastavak();
+
 
 module sipke() {
     sipka(15, 10);
@@ -459,26 +462,29 @@ module nastavak() {
         cube([w,d,h]);
 
     
-    translate([84.33,-midSensors,0])
+    translate([middleSensorL-4-2*4,-midSensors,0])
         rotate([0,90,0])leptirNastavak();
     
-    translate([84.33+20,-midSensors,0])
+    translate([middleSensorL+2*4,-midSensors,0])
         rotate([0,90,0])leptirNastavak();
     
-    translate([84.33+3*44+8,-midSensors,0])
+    translate([middleSensorR-4-2*4,-midSensors,0])
         rotate([0,90,0])leptirNastavak();
     
-    translate([84.33+20+3*44+8,-midSensors,0])
+    translate([middleSensorR+2*4,-midSensors,0])
         rotate([0,90,0])leptirNastavak();
-}
-difference() {
-    ploca();
-    sipke();
 }
 
-difference() {
-    nastavak();
-    sipke();
+module saNastavkom() {
+    difference() {
+        ploca();
+        sipke();
+    }
+
+    difference() {
+        nastavak();
+        sipke();
+    }
 }
 
 module projekcije() {
@@ -489,11 +495,11 @@ module projekcije() {
         translate([0,0,0]) 
             ploca();
             
-    projection(cut = true)
-        translate([0, 0, 84.33+4/2])
+    !projection(cut = true)
+        translate([0, 0, middleSensorL-4/2-2*4])
             rotate([0,90,0])
                 ploca();
-    !projection(cut = true)
+    projection(cut = true)
         rotate([90,0,0])
             translate([0, -d/2, 0])
                 ploca();
