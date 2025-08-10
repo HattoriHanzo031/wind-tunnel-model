@@ -36,11 +36,11 @@ module connect(start, finish, angle=[0,0,0], bend=1.5, inRadius=1.5) {
             translate([0,-bend,0])curve(0,0,0,bend);
             translate([-bend,0,0])
                 rotate([0,-90,0])
-                    cylinder(d=1, h=xLen);
+                    cylinder(d=cev, h=xLen);
             
             translate([0,-bend,0])
                 rotate([90,0,0])
-                    cylinder(d=1, h=yLen);
+                    cylinder(d=cev, h=yLen);
         }
     }
 }
@@ -52,10 +52,10 @@ module connect_no_bend(start, finish, angle=[0,0,0], inRadius=1.5) {
     translate([start[0], finish[1]]){
         rotate(angle){
             rotate([0,-90,0])
-                cylinder(d=1, h=xLen);
+                cylinder(d=cev, h=xLen);
             
             rotate([90,0,0])
-                cylinder(d=1, h=yLen);
+                cylinder(d=cev, h=yLen);
         }
     }
 }
@@ -63,7 +63,7 @@ module connect_no_bend(start, finish, angle=[0,0,0], inRadius=1.5) {
 
 module sensor_mount(){
     difference() {
-        cylinder(r=1, h=5);
+        cylinder(r=1.3, h=5);
         cylinder(d=cev, h=5);
     }
 }
@@ -136,7 +136,7 @@ module ploca() {
         x8=xMargina+32+6*44;
         x9=xMargina+32+6*44+32;
         
-        raise = radius+cev/2;
+        raise = h-radius*2;
         
         sensorL1X = xMargina+32+1*66-2*4;
         sensorL2X = xMargina+32+1*66-1*4;
@@ -505,4 +505,5 @@ module projekcije() {
                 ploca();
 }
 
-projekcije();
+//projekcije();
+ploca();
