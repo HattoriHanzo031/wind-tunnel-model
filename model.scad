@@ -5,6 +5,7 @@ d = 50;
 h = 5;
 
 cev = 1;
+senzor = 2.6;
 radius = 1.5;
 
 module curve(xAngle=0, zAngle=0, trans=0, radius=1.5) {
@@ -63,7 +64,7 @@ module connect_no_bend(start, finish, angle=[0,0,0], inRadius=1.5) {
 
 module sensor_mount(){
     difference() {
-        cylinder(r=1.3, h=5);
+        cylinder(d=senzor, h=5);
         cylinder(d=cev, h=5);
     }
 }
